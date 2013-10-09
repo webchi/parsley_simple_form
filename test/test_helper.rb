@@ -14,6 +14,15 @@ require 'action_view/test_case'
 require "rails/generators/test_case"
 
 require 'simple_form'
+
+require_relative 'support/user'
+
+module Rails
+  def self.env
+    ActiveSupport::StringInquirer.new("test")
+  end
+end
+
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
@@ -28,6 +37,8 @@ class ActionView::TestCase
   include SimpleForm::ActionViewExtensions::FormHelper
   include ParsleySimpleForm::ActionViewExtensions::FormHelper
 
+  setup :setup_users
+
   def protect_against_forgery?
     false
   end
@@ -38,6 +49,10 @@ class ActionView::TestCase
 
   def company_user_path(*args)
     '/company/users'
+  end
+
+  def setup_users(extra_attributes = {})
+    @user = User.build(extra_attributes)
   end
 
   alias :users_path :user_path
