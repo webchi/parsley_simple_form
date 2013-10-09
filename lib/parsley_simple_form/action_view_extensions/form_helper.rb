@@ -6,6 +6,7 @@ module ParsleySimpleForm
         options[:builder] = ParsleySimpleForm::FormBuilder
         options[:html] = {} if options[:html].nil?
         options[:html][:"data-validate"] = "parsley"
+        options[:html][:novalidate] = true
         simple_form_for(object, *(args << options), &block)
       end
     end

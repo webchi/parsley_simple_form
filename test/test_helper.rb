@@ -39,6 +39,10 @@ class ActionView::TestCase
 
   setup :setup_users
 
+  def with_parsley_form_for(*args, &block)
+    concat parsley_form_for(*args, &(block || proc {}))
+  end
+
   def protect_against_forgery?
     false
   end

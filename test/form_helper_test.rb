@@ -7,4 +7,12 @@ class FormHelperTest < ActionView::TestCase
       assert f.instance_of?(ParsleySimpleForm::FormBuilder)
     end
   end
+
+  test 'form attribute novalidate as true' do
+    with_parsley_form_for @user do |f|
+      f.input :name
+    end
+    assert_select 'form[novalidate]'
+  end
+
 end
