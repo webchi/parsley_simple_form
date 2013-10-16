@@ -15,7 +15,7 @@ module ParsleySimpleForm
 
       def input_id(attribute_name, options, &block)
         input = @form_builder.find_input(attribute_name, options, &block)
-        (input.lookup_model_names * '_') + '_attributes_' + input.attribute_name.to_s
+        (input.lookup_model_names * '_') + '_' + input.attribute_name.to_s
       end
     end
   end

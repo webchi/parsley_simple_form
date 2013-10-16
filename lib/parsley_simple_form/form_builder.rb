@@ -21,16 +21,25 @@ module ParsleySimpleForm
       message.merge! message_by_type
       message.merge! message_required 
       message.merge! message_equalto
+      message.merge! message_notblank
+      message
     end
 
     def message_by_type
       type = find_input(@attribute_name, @options, &@block).input_type.to_s
+      #puts "data-type-#{type}-message".to_sym.to_s
       {"data-type-#{type}-message".to_sym => I18n::translate("form_validation.message.#{type}")}
     end
 
     def message_required
       required = Constraints::Basics::RequiredConstraint.new(self,@options,&@block)
       return required.html_attributes if required.match?
+      {}
+    end
+
+    def message_notblank
+      notblank = Constraints::Basics::NotBlankConstraint.new(self,@options,&@block)
+      return notblank.html_attributes if notblank.match?
       {}
     end
 
