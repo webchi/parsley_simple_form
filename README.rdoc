@@ -1,5 +1,0 @@
-= ParsleySimpleForm
-
-This project rocks and uses MIT-LICENSE.
-
-Client-side validation helper powered by simple_form and parsley.js
