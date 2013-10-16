@@ -70,6 +70,7 @@ class User
   end
 
   def self.human_attribute_name(attribute)
+    attribute = attribute.to_s
     case attribute
       when 'name'
         'Super User Name!'
@@ -77,6 +78,8 @@ class User
         'User Description!'
       when 'company'
         'Company Human Name!'
+      when 'password'
+        'Password!'
       else
         attribute.humanize
     end
