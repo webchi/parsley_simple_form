@@ -15,7 +15,7 @@ require "rails/generators/test_case"
 
 require 'simple_form'
 
-require_relative 'support/user'
+require_relative 'support/models'
 
 module Rails
   def self.env
@@ -57,6 +57,7 @@ class ActionView::TestCase
 
   def setup_users(extra_attributes = {})
     @user = User.build(extra_attributes)
+    @post = Post.build
   end
 
   alias :users_path :user_path

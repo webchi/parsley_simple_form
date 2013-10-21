@@ -23,6 +23,16 @@ class FormBuilderTest < ActionView::TestCase
     assert_select 'input[data-equalto="#user_password"]'
   end
 
+  test 'equalto constraint on nested form' do
+    with_parsley_form_for @user do |f|
+      f.simple_fields_for @post do |posts_form|
+        posts_form.input :password
+        posts_form.input :password_confirmation, equalto: :password
+      end
+    end
+    assert_select 'input[data-equalto="#user_post_attributes_password"]'
+  end
+
   test 'notblank constraint' do
     with_parsley_form_for @user do |f|
       f.input :email, notblank: true

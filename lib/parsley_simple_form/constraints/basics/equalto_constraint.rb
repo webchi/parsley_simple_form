@@ -12,7 +12,7 @@ module ParsleySimpleForm
           return {} if @options.nil? || @options[:equalto].nil?
 
           attr_equalto = @options[:equalto]      
-          input = @form_builder.find_input(attr_equalto, @options, &@block)      
+          input = @form_builder.find_input(attr_equalto, @options, &@block)
           {
             :'data-equalto' => '#' + input_id(attr_equalto, @options, &@block), 
             :'data-equalto-message' => 

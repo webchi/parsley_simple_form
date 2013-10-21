@@ -27,7 +27,6 @@ module ParsleySimpleForm
 
     def message_by_type
       type = find_input(@attribute_name, @options, &@block).input_type.to_s
-      #puts "data-type-#{type}-message".to_sym.to_s
       {"data-type-#{type}-message".to_sym => I18n::translate("form_validation.message.#{type}")}
     end
 

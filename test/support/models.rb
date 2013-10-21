@@ -117,3 +117,6 @@ class User
     ["credit_card"]
   end
 end
+
+class Post < User
+end
