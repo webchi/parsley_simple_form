@@ -25,3 +25,6 @@ Contributions
 -------------
 
 Feel free to make a PR or add an issue to the project :)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gbmoretti/parsley_simple_form/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
