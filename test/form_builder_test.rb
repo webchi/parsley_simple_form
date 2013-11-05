@@ -8,6 +8,20 @@ class FormBuilderTest < ActionView::TestCase
     end
   end
 
+  test 'adds a valid constraint type i18n' do 
+    with_parsley_form_for @user do |f|
+      f.input :credit_limit
+    end
+    assert_select 'input'
+  end
+
+  test 'doesnt add invalid constraint type i18n' do
+    with_parsley_form_for @user do |f|
+      f.input :name
+    end
+    assert_select 'input[data-type-string-message]', 0   
+  end
+
   test 'required constraint' do
     with_parsley_form_for @user do |f|
       f.input :name, required: true
