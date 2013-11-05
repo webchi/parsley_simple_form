@@ -1,7 +1,9 @@
 require 'simple_form'
 
 module ParsleySimpleForm
-  class FormBuilder < SimpleForm::FormBuilder
+  class FormBuilder < SimpleForm::FormBuilder    
+    attr_reader :attribute_name
+
     def input(attribute_name, options = {}, &block)
       @attribute_name = attribute_name
       @options = options
@@ -26,9 +28,9 @@ module ParsleySimpleForm
     end
 
     def message_by_type
-      type = find_input(@attribute_name, @options, &@block).input_type.to_s
-      #puts "data-type-#{type}-message".to_sym.to_s
-      {"data-type-#{type}-message".to_sym => I18n::translate("form_validation.message.#{type}")}
+      type = Constraints::Basics::TypeConstraint.new(self,@options,&@block)
+      return type.html_attributes if type.match?
+      {}
     end
 
     def message_required

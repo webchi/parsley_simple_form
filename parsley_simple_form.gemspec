@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/innvent/parsley_simple_form"
   s.summary     = "Client side validation with parsley and simple_form."
   s.description = "Client side validation with parsley and simple_form."
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
