@@ -13,8 +13,9 @@ module ParsleySimpleForm
         end
 
         def html_attributes
-          type = TYPE_MAP[type] unless TYPE_MAP[type].nil?
-          {"data-type-#{type}-message".to_sym => I18n::translate("form_validation.message.#{type}")}
+          mapped_type = type
+          mapped_type = TYPE_MAP[type] unless TYPE_MAP[type].nil?
+          {"data-type-#{mapped_type}-message".to_sym => I18n::translate("form_validation.message.#{mapped_type}")}
         end
 
         private
