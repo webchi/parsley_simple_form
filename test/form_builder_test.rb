@@ -12,7 +12,7 @@ class FormBuilderTest < ActionView::TestCase
     with_parsley_form_for @user do |f|
       f.input :credit_limit
     end
-    assert_select 'input'
+    assert_select 'input[data-type-number-message]'
   end
 
   test 'doesnt add invalid constraint type i18n' do
