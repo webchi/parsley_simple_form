@@ -15,8 +15,6 @@ require "rails/generators/test_case"
 
 require 'simple_form'
 
-require_relative 'support/models'
-
 module Rails
   def self.env
     ActiveSupport::StringInquirer.new("test")
