@@ -21,16 +21,9 @@ module ParsleySimpleForm
 
     private
     def parsley_html
-      message = {}
+      message = {}     
 
-      constraints = [
-        Constraints::Basics::TypeConstraint,
-        Constraints::Basics::RequiredConstraint,     
-        Constraints::Basics::NotBlankConstraint, 
-        Constraints::Basics::EqualtoConstraint
-      ]
-
-      constraints.each do |constraint|
+      basic_constraints.each do |constraint|
         message.merge! check_constraint(constraint)
       end
       message
@@ -41,5 +34,13 @@ module ParsleySimpleForm
       return constraint_checker.html_attributes if constraint_checker.match?
       {}
     end
+
+    def basic_constraints
+      #dinamically load all classes of Constraints::Basics module
+      Constraints::Basics.constants
+        .select { |c| Constraints::Basics.const_get(c).is_a?(Class) }
+        .map { |c| Constraints::Basics.const_get(c) }
+    end
+
   end
 end
