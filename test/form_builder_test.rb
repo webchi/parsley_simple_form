@@ -47,6 +47,13 @@ class FormBuilderTest < ActionView::TestCase
     assert_select 'input[data-equalto="#user_post_attributes_password"]'
   end
 
+  test 'minlenght constraint' do
+    with_parsley_form_for @user do |f|
+      f.input :password, minlength: 10
+    end
+    assert_select 'input[data-minlength=10]'
+  end
+
   test 'notblank constraint' do
     with_parsley_form_for @user do |f|
       f.input :email, notblank: true
