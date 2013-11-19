@@ -9,7 +9,7 @@ module ParsleySimpleForm
         }
 
         def match?
-          TYPES_CONSTRAINTS.include?(type)
+          TYPES_CONSTRAINTS.include?(type) or !TYPE_MAP[type].nil?
         end
 
         def html_attributes

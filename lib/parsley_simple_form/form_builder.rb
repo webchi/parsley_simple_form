@@ -4,12 +4,7 @@ module ParsleySimpleForm
   class FormBuilder < SimpleForm::FormBuilder    
     attr_reader :attribute_name
 
-    CONSTRAINTS = [
-      Constraints::Basics::TypeConstraint,
-      Constraints::Basics::RequiredConstraint,     
-      Constraints::Basics::NotBlankConstraint, 
-      Constraints::Basics::EqualtoConstraint
-    ]
+   
 
     def input(attribute_name, options = {}, &block)
       @attribute_name = attribute_name
@@ -27,7 +22,15 @@ module ParsleySimpleForm
     private
     def parsley_html
       message = {}
-      CONSTRAINTS.each do |constraint|
+
+      constraints = [
+        Constraints::Basics::TypeConstraint,
+        Constraints::Basics::RequiredConstraint,     
+        Constraints::Basics::NotBlankConstraint, 
+        Constraints::Basics::EqualtoConstraint
+      ]
+
+      constraints.each do |constraint|
         message.merge! check_constraint(constraint)
       end
       message
