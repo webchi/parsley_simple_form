@@ -36,7 +36,7 @@ module ParsleySimpleForm
     end
 
     def basic_constraints
-      #dinamically load all classes of Constraints::Basics module
+      # dinamically load all classes of Constraints::Basics module
       Constraints::Basics.constants
         .select { |c| Constraints::Basics.const_get(c).is_a?(Class) }
         .map { |c| Constraints::Basics.const_get(c) }

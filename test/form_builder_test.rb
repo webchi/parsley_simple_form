@@ -61,6 +61,14 @@ class FormBuilderTest < ActionView::TestCase
     assert_select 'input[data-maxlength=5]'
   end
 
+  test 'rangelenght constraint with string parameter' do
+    with_parsley_form_for @user do |f|
+      f.input :password, rangelength: "[1,5]"
+    end
+    assert_select "input[data-rangelength='[1,5]']"
+    assert_select "input[data-rangelength-message]" 
+  end
+
   test 'notblank constraint' do
     with_parsley_form_for @user do |f|
       f.input :email, notblank: true
