@@ -34,6 +34,7 @@ end
 class ActionView::TestCase
   include SimpleForm::ActionViewExtensions::FormHelper
   include ParsleySimpleForm::ActionViewExtensions::FormHelper
+  include I18nHelper
 
   setup :setup_users
 

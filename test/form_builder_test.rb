@@ -62,11 +62,21 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   test 'rangelenght constraint with string parameter' do
+    mock_i18n({ :form_validation => { :message => { :rangelength => "%{min},%{max}" } } })
     with_parsley_form_for @user do |f|
       f.input :password, rangelength: "[1,5]"
     end
     assert_select "input[data-rangelength='[1,5]']"
-    assert_select "input[data-rangelength-message]" 
+    assert_select "input[data-rangelength-message=1,5]" 
+  end
+
+  test 'rangelength constraint with Range object as parameter' do
+    mock_i18n({ :form_validation => { :message => { :rangelength => "%{min},%{max}" } } })
+    with_parsley_form_for @user do |f|
+      f.input :password, rangelength: 1..5
+    end
+    assert_select "input[data-rangelength='[1,5]']"
+    assert_select "input[data-rangelength-message=1,5]" 
   end
 
   test 'notblank constraint' do
