@@ -66,8 +66,7 @@ class FormBuilderTest < ActionView::TestCase
     with_parsley_form_for @user do |f|
       f.input :password, rangelength: "[1,5]"
     end
-    assert_select "input[data-rangelength='[1,5]']"
-    assert_select "input[data-rangelength-message=1,5]" 
+    assert_select "input[data-rangelength='[1,5]'][data-rangelength-message=1,5]"
   end
 
   test 'rangelength constraint with Range object as parameter' do
@@ -75,8 +74,7 @@ class FormBuilderTest < ActionView::TestCase
     with_parsley_form_for @user do |f|
       f.input :password, rangelength: 1..5
     end
-    assert_select "input[data-rangelength='[1,5]']"
-    assert_select "input[data-rangelength-message=1,5]" 
+    assert_select "input[data-rangelength='[1,5]'][data-rangelength-message=1,5]"
   end
 
   test 'notblank constraint' do
@@ -84,6 +82,22 @@ class FormBuilderTest < ActionView::TestCase
       f.input :email, notblank: true
     end
     assert_select 'input[data-notblank]'
+  end
+
+  test 'min constraint' do
+    mock_i18n({ :form_validation => { :message => { :min => "%{min}" } } })
+    with_parsley_form_for @user do |f|
+      f.input :credit_limit, min: 6
+    end
+    assert_select 'input[data-min-message=6][min=6][type=number]'
+  end
+
+  test 'max constraint' do
+    mock_i18n({ :form_validation => { :message => { :max => "%{max}" } } })
+    with_parsley_form_for @user do |f|
+      f.input :credit_limit, input_html: { max: 6 }
+    end
+    assert_select 'input[data-max-message=6][max=6][type=number]'
   end
 
 end
