@@ -2,9 +2,7 @@ require 'simple_form'
 
 module ParsleySimpleForm
   class FormBuilder < SimpleForm::FormBuilder    
-    attr_reader :attribute_name
-
-   
+    attr_reader :attribute_name   
 
     def input(attribute_name, options = {}, &block)
       @attribute_name = attribute_name
