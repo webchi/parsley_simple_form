@@ -108,4 +108,11 @@ class FormBuilderTest < ActionView::TestCase
     assert_select "input[parsley-range='[1000,5000]'][data-range-message=1000,5000]"
   end
 
+  test 'regexp constraint' do
+    with_parsley_form_for @user do |f|
+      f.input :name, regexp: "$@"
+    end
+    assert_select "input[pattern=$@]"
+  end
+
 end
