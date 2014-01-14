@@ -65,6 +65,7 @@ class User
       when :attempts      then :integer
       when :action        then :string
       when :credit_card   then :string
+      when :phone_number     then :string
     end
     Column.new(attribute, column_type, limit)
   end

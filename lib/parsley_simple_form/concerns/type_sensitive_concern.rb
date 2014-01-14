@@ -1,11 +1,15 @@
 module ParsleySimpleForm
   module Concerns
     module TypeSensitiveConcern
-      TYPES_CONSTRAINTS = %w(email url urlstrict digits number alphanum dateIso phone)
+      TYPES_CONSTRAINTS = %w(email url urlstrict digits number alphanum dateIso)
+      HTML_NATIVE_TYPES = %w(email url number tel)
 
       TYPE_MAP = {
-        'decimal' => 'number'
+        'decimal' => 'number',
+        'integer' => 'digits'
       }
+
+
 
       private
       def mapped_type
