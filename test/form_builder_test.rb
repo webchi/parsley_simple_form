@@ -115,4 +115,25 @@ class FormBuilderTest < ActionView::TestCase
     assert_select "input[pattern=$@]"
   end
 
+  test 'min check' do
+    with_parsley_form_for @user do |f|
+      f.input :active, mincheck: 2, check_group: 'group'
+    end
+    assert_select "input[parsley-mincheck=2][parsley-group=group]"
+  end
+
+  test 'max check' do
+    with_parsley_form_for @user do |f|
+      f.input :active, maxcheck: 1
+    end
+    assert_select "input[parsley-maxcheck=1]"
+  end
+
+  test 'range check' do
+    with_parsley_form_for @user do |f|
+      f.input :active, rangecheck: 0..1
+    end
+    assert_select "input[parsley-rangecheck='[0,1]']"
+  end
+
 end
