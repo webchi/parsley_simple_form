@@ -2,14 +2,14 @@ require 'simple_form'
 
 module ParsleySimpleForm
   class FormBuilder < SimpleForm::FormBuilder    
-    attr_reader :attribute_name
+    attr_reader :attribute_name   
 
     def input(attribute_name, options = {}, &block)
       @attribute_name = attribute_name
       @options = options
       @block = block
       @options[:input_html] ||= {} 
-      @options[:input_html].merge! i18n_messages
+      @options[:input_html].merge! parsley_html
       super(@attribute_name, @options, &@block)
     end
 
@@ -18,38 +18,27 @@ module ParsleySimpleForm
     end
 
     private
-    def i18n_messages
-      message = {}
-      message.merge! message_by_type
-      message.merge! message_required 
-      message.merge! message_equalto
-      message.merge! message_notblank
+    def parsley_html
+      message = {}     
+
+      basic_constraints.each do |constraint|
+        message.merge! check_constraint(constraint)
+      end
       message
     end
 
-    def message_by_type
-      type = Constraints::Basics::TypeConstraint.new(self,@options,&@block)
-      return type.html_attributes if type.match?
+    def check_constraint(constraint)
+      constraint_checker = constraint.new(self,@options,&@block)
+      return constraint_checker.html_attributes if constraint_checker.match?
       {}
     end
 
-    def message_required
-      required = Constraints::Basics::RequiredConstraint.new(self,@options,&@block)
-      return required.html_attributes if required.match?
-      {}
+    def basic_constraints
+      # dinamically load all classes of Constraints::Basics module
+      Constraints::Basics.constants
+        .select { |c| Constraints::Basics.const_get(c).is_a?(Class) }
+        .map { |c| Constraints::Basics.const_get(c) }
     end
 
-    def message_notblank
-      notblank = Constraints::Basics::NotBlankConstraint.new(self,@options,&@block)
-      return notblank.html_attributes if notblank.match?
-      {}
-    end
-
-    #f.input :password_confirm, :equalto => :password
-    def message_equalto
-      equalto = Constraints::Basics::EqualtoConstraint.new(self,@options,&@block)
-      return equalto.html_attributes if equalto.match?
-      {}
-    end
   end
 end
