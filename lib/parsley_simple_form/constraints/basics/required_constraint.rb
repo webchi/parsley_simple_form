@@ -15,7 +15,7 @@ module ParsleySimpleForm
         end
 
         def html_attributes
-          {"data-required-message".to_sym => I18n::translate('form_validation.message.required')}
+          {"data-parsley-required-message".to_sym => I18n::translate('form_validation.message.required')}
         end
 
       end

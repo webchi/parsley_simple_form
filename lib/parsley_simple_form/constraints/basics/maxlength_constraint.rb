@@ -9,8 +9,8 @@ module ParsleySimpleForm
 
         def html_attributes
           {
-            :'data-maxlength' => @options[:maxlength],
-            :'data-maxlength-message' => I18n::translate('form_validation.message.maxlength', maxlength: @options[:maxlength])
+            :'data-parsley-maxlength' => @options[:maxlength],
+            :'data-parsley-maxlength-message' => I18n::translate('form_validation.message.maxlength', maxlength: @options[:maxlength])
           }
         end
 

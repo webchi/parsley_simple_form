@@ -14,8 +14,8 @@ module ParsleySimpleForm
           attr_equalto = @options[:equalto]      
           input = @form_builder.find_input(attr_equalto, @options, &@block)
           {
-            :'data-equalto' => '#' + input_id(attr_equalto, @options, &@block), 
-            :'data-equalto-message' => 
+            :'data-parsley-equalto' => '#' + input_id(attr_equalto, @options, &@block), 
+            :'data-parsley-equalto-message' => 
               I18n::translate('form_validation.message.equalto', field_name: input.object.class.human_attribute_name(input.attribute_name))
           }
         end

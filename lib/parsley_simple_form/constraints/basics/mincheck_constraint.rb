@@ -10,10 +10,10 @@ module ParsleySimpleForm
 
         def html_attributes
           attributes = {
-            :'parsley-mincheck' => @options[:mincheck],
-            :'parsley-mincheck-message' => I18n::translate('form_validation.message.mincheck', mincheck: @options[:mincheck])
+            :'data-parsley-mincheck' => @options[:mincheck],
+            :'data-parsley-mincheck-message' => I18n::translate('form_validation.message.mincheck', mincheck: @options[:mincheck])
           }
-          attributes.merge!({:'parsley-group' => @options[:check_group]}) unless @options[:check_group].nil?
+          attributes.merge!({:'data-parsley-group' => @options[:check_group]}) unless @options[:check_group].nil?
           attributes
         end
 

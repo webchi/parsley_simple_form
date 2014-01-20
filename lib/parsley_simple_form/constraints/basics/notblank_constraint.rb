@@ -8,7 +8,7 @@ module ParsleySimpleForm
         end
 
         def html_attributes
-          {:'data-notblank' => true}
+          {:'data-parsley-notblank' => true}
         end
 
       end

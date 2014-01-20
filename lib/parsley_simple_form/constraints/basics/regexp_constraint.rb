@@ -14,7 +14,7 @@ module ParsleySimpleForm
         end
 
         def html_attributes
-          {:'data-regexp-message' => I18n::translate('form_validation.message.regexp'),
+          {:'data-parsley-regexp-message' => I18n::translate('form_validation.message.regexp'),
             :pattern => @regexp}
         end
       end

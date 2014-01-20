@@ -12,7 +12,7 @@ class FormHelperTest < ActionView::TestCase
     with_parsley_form_for @user do |f|
       f.input :name
     end
-    assert_select 'form[novalidate]'
+    assert_select 'form[data-parsley-validate][data-parsley-namespace=data-parsley-]'
   end
 
 end

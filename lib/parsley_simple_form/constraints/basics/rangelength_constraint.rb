@@ -11,8 +11,8 @@ module ParsleySimpleForm
         def html_attributes
           range = parse_range(@options[:rangelength])
           {
-            :'parsley-rangelength' => range[:string],
-            :'data-rangelength-message' => I18n::translate('form_validation.message.rangelength', min: range[:min], max: range[:max])
+            :'data-parsley-rangelength' => range[:string],
+            :'data-parsley-rangelength-message' => I18n::translate('form_validation.message.rangelength', min: range[:min], max: range[:max])
           }
         end
       end

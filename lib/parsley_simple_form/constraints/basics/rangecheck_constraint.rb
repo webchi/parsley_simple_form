@@ -12,10 +12,10 @@ module ParsleySimpleForm
         def html_attributes
           range = parse_range(@options[:rangecheck])
           attributes = {
-            :'parsley-rangecheck' => range[:string],
-            :'parsley-rangecheck-message' => I18n::translate('form_validation.message.ragecheck', min: range[:min], max: range[:max])
+            :'data-parsley-rangecheck' => range[:string],
+            :'data-parsley-rangecheck-message' => I18n::translate('form_validation.message.ragecheck', min: range[:min], max: range[:max])
           }
-          attributes.merge!({:'parsley-group' => @options[:check_group]}) unless @options[:check_group].nil?
+          attributes.merge!({:'data-parsley-group' => @options[:check_group]}) unless @options[:check_group].nil?
           attributes
         end
 

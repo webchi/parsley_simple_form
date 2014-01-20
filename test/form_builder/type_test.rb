@@ -20,7 +20,7 @@ class TypeTest < ActionView::TestCase
     with_parsley_form_for @user do |f|
       f.input :lock_version
     end
-    assert_select 'input[parsley-type=digits]'
+    assert_select 'input[data-parsley-type=digits]'
   end
 
   test "number" do
@@ -39,22 +39,22 @@ class TypeTest < ActionView::TestCase
 
   test "alphanum" do
     with_parsley_form_for @user do |f|
-      f.input :action, input_html: { :'parsley-type' => 'alphanum' }
+      f.input :action, input_html: { :'data-parsley-type' => 'alphanum' }
     end
-    assert_select 'input[parsley-type=alphanum]'    
+    assert_select 'input[data-parsley-type=alphanum]'    
   end
 
   test "date iso" do
     with_parsley_form_for @user do |f|
-      f.input :created_at, as: :string, input_html: { :'parsley-type' => 'dateIso' }
+      f.input :created_at, as: :string, input_html: { :'data-parsley-type' => 'dateIso' }
     end
-    assert_select 'input[parsley-type=dateIso]'    
+    assert_select 'input[data-parsley-type=dateIso]'    
   end
 
   test "url strict" do
     with_parsley_form_for @user do |f|
-      f.input :action, input_html: { :'parsley-type' => 'urlstrict' }
+      f.input :action, input_html: { :'data-parsley-type' => 'urlstrict' }
     end
-    assert_select 'input[parsley-type=urlstrict]'    
+    assert_select 'input[data-parsley-type=urlstrict]'    
   end
 end
