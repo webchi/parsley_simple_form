@@ -9,8 +9,8 @@ module ParsleySimpleForm
 
         def html_attributes
           {
-            :'data-minlength' => @options[:minlength],
-            :'data-minlength-message' => I18n::translate('form_validation.message.minlength', minlength: @options[:minlength])
+            :'data-parsley-minlength' => @options[:minlength],
+            :'data-parsley-minlength-message' => I18n::translate('form_validation.message.minlength', minlength: @options[:minlength])
           }
         end
 

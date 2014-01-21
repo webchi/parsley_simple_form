@@ -13,7 +13,7 @@ module ParsleySimpleForm
         end
 
         def html_attributes
-          attributes = {:'data-min-message' => I18n::translate('form_validation.message.min', min: @min)}
+          attributes = {:'data-parsley-min-message' => I18n::translate('form_validation.message.min', min: @min)}
           attributes.merge({:type => 'number', :min => @min}) if (@input_html[:min].nil? || !mapped_type == 'number')
         end
       end

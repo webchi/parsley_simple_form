@@ -12,7 +12,7 @@ module ParsleySimpleForm
         end
 
         def html_attributes
-          attributes = {:'data-max-message' => I18n::translate('form_validation.message.max', max: @max)}
+          attributes = {:'data-parsley-max-message' => I18n::translate('form_validation.message.max', max: @max)}
           attributes.merge!({:type => 'number', :max => @max}) if (@input_html[:max].nil? || !mapped_type.to_s == 'number')
           attributes
         end
