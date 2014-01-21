@@ -21,6 +21,8 @@ This code:
 
 Automatically adds required constraint to inputs which are required attributes, and validates equality of `password` and `password_confirmation`.
 
+Don't forget to add parsley.js to your project. You can do it adding the gem [parsley-rails](https://github.com/mekishizufu/parsley-rails) to project's Gemfile (we don't recommend this approach) or use a package manager like [Bower](https://github.com/bower/bower).
+
 Contributions
 -------------
 
