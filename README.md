@@ -95,6 +95,19 @@ Or for a range:
 <%= f.input :active_blue, check_group: 'leds' %>
 ````
 
+I18n
+----
+
+This gem will add custom error messages if properly entries are setted in the
+`locales` folder. You can see examples in [this folder](https://github.com/innvent/parsley_simple_form/tree/master/locales) 
+
+Roadmap
+-------
+
+0. Compatible with Parsley.js 2
+1. Don't depend from simple_form
+2. Get i18n messages from ActiveRecord default fields
+
 
 Contributions
 -------------
