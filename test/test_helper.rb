@@ -1,19 +1,17 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-require "rails/test_help"
+require 'bundler/setup'
+
+require 'minitest/autorun'
 
 require 'active_model'
 require 'action_controller'
 require 'action_view'
+
 require 'action_view/template'
 
 require 'action_view/test_case'
-
-require "rails/generators/test_case"
-
-require 'simple_form'
 
 module Rails
   def self.env
@@ -21,7 +19,17 @@ module Rails
   end
 end
 
-Rails.backtrace_cleaner.remove_silencers!
+$:.unshift File.expand_path("../../lib", __FILE__)
+require 'simple_form'
+require 'parsley_simple_form'
+require "rails/generators/test_case"
+require 'generators/simple_form/install_generator'
+
+module Rails
+  def self.env
+    ActiveSupport::StringInquirer.new("test")
+  end
+end
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
